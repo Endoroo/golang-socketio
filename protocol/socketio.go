@@ -3,6 +3,7 @@ package protocol
 import (
 	"encoding/json"
 	"errors"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -15,13 +16,13 @@ const (
 	ackMessage    = "43"
 
 	CloseMessage = "1"
-	PingMessage = "2"
-	PongMessage = "3"
+	PingMessage  = "2"
+	PongMessage  = "3"
 )
 
 var (
-	ErrorWrongMessageType = errors.New("Wrong message type")
-	ErrorWrongPacket      = errors.New("Wrong packet")
+	ErrorWrongMessageType = errors.New("wrong message type")
+	ErrorWrongPacket      = errors.New("wrong packet")
 )
 
 func typeToText(msgType int) (string, error) {
@@ -170,6 +171,20 @@ func getMethod(text string) (method, restText string, err error) {
 	return text[start:end], text[rest : len(text)-1], nil
 }
 
+/**
+Get channel from args, if present
+*/
+func getChannel(args string) (string, string) {
+	regExp := regexp.MustCompile(`^"([\d\w_]+)",{`)
+	finds := regExp.FindSubmatch([]byte(args))
+	if len(finds) < 2 {
+		return "", args
+	}
+	channel := string(finds[1])
+	args = strings.Replace(args, `"`+channel+`",`, "", 1)
+	return channel, args
+}
+
 func Decode(data string) (*Message, error) {
 	var err error
 	msg := &Message{}
@@ -209,6 +224,7 @@ func Decode(data string) (*Message, error) {
 	if err != nil {
 		return nil, err
 	}
+	msg.Channel, msg.Args = getChannel(msg.Args)
 
 	return msg, nil
 }
