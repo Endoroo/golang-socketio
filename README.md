@@ -1,3 +1,7 @@
+Fork
+=====
+Source - https://github.com/graarh/golang-socketio
+
 golang socket.io
 ================
 
@@ -9,7 +13,7 @@ Examples directory contains simple client and server.
 
 ### Installation
 
-    go get github.com/graarh/golang-socketio
+    go get github.com/endoroo/golang-socketio
 
 ### Simple server usage
 

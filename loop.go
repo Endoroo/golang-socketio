@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/endoroo/golang-socketio/protocol"
-	"github.com/graarh/golang-socketio/transport"
+	"github.com/endoroo/golang-socketio/transport"
 	"net/http"
 	"sync"
 	"time"

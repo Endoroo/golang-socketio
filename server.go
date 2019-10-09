@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/endoroo/golang-socketio/protocol"
-	"github.com/graarh/golang-socketio/transport"
+	"github.com/endoroo/golang-socketio/transport"
 	"math/rand"
 	"net/http"
 	"sync"
