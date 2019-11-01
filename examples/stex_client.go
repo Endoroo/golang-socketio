@@ -53,9 +53,12 @@ type OrderMessage struct {
 }
 
 func main() {
+	tr := transport.GetDefaultWebsocketTransport()
+	tr.PingTimeout = 25 * time.Second
+	tr.PingInterval = 25 * time.Second
 	client, err := gosocketio.Dial(
 		gosocketio.GetUrl("socket.stex.com", 443, true),
-		transport.GetDefaultWebsocketTransport(),
+		tr,
 	)
 	if err != nil {
 		log.Fatal(err)
