@@ -19,7 +19,7 @@ type HeadersArgs struct {
 }
 
 type AuthArgs struct {
-	Headers HeadersArgs
+	Headers HeadersArgs `json:"headers"`
 }
 
 type SubscribeArgs struct {
@@ -48,6 +48,7 @@ type OrderMessage struct {
 	Amount         string
 	Price          string
 	Amount2        string
+	Type           string
 	Socket         string
 }
 

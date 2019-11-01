@@ -175,7 +175,7 @@ func getMethod(text string) (method, restText string, err error) {
 Get channel from args, if present
 */
 func getChannel(args string) (string, string) {
-	regExp := regexp.MustCompile(`^"([\d\w_]+)",{`)
+	regExp := regexp.MustCompile(`^"([\d\w_\-]+)",{`)
 	finds := regExp.FindSubmatch([]byte(args))
 	if len(finds) < 2 {
 		return "", args
