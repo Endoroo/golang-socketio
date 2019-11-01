@@ -113,7 +113,7 @@ func subscribeOnPrivateChannelExample(client *gosocketio.Client) error {
 	}
 
 	err = client.Emit("subscribe", SubscribeArgs{
-		Channel: "sell_user_data_u" + fmt.Sprintf("%d", userId) + "c" + fmt.Sprintf("%d", pairId),
+		Channel: "private-sell_user_data_u" + fmt.Sprintf("%d", userId) + "c" + fmt.Sprintf("%d", pairId),
 		Auth:    AuthArgs{Headers: HeadersArgs{Authorization: "Bearer " + accessToken}},
 	})
 	if err != nil {
